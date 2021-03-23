@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.PostgreSQL9Dialect
+        </property>
+        <property name="hibernate.connection.driver_class">
+            org.postgresql.Driver
+        </property>
+
+        <!-- Assume test is the database name -->
+        <property name="hibernate.connection.url">
+            jdbc:postgresql://localhost:5432/crud_blog
+        </property>
+        <property name="hibernate.connection.username">
+            blogger
+        </property>
+        <property name="hibernate.connection.password">
+            blogger
+        </property>
+
+        <!-- List of XML mapping files -->
+        <mapping resource="Regions.hbm.xml"/>
+        <mapping resource="Post.hbm.xml" />
+        <mapping resource="User.hbm.xml" />
+
+    </session-factory>
+</hibernate-configuration>

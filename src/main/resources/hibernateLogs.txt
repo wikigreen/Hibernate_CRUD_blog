@@ -1,0 +1,40 @@
+мар. 08, 2021 6:57:09 PM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate Core {5.0.7.Final}
+мар. 08, 2021 6:57:09 PM org.hibernate.cfg.Environment <clinit>
+INFO: HHH000206: hibernate.properties not found
+мар. 08, 2021 6:57:09 PM org.hibernate.cfg.Environment buildBytecodeProvider
+INFO: HHH000021: Bytecode provider name : javassist
+мар. 08, 2021 6:57:10 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+мар. 08, 2021 6:57:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+мар. 08, 2021 6:57:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/crud_blog]
+мар. 08, 2021 6:57:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=blogger}
+мар. 08, 2021 6:57:10 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+мар. 08, 2021 6:57:10 PM org.hibernate.engine.jdbc.connections.internal.PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
+мар. 08, 2021 6:57:11 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+мар. 08, 2021 6:57:11 PM org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl useContextualLobCreation
+INFO: HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+мар. 08, 2021 6:57:11 PM org.hibernate.type.BasicTypeRegistry register
+INFO: HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@3af4e0bf
+мар. 08, 2021 6:57:11 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+INFO: HHH000228: Running hbm2ddl schema update
+мар. 08, 2021 6:57:12 PM org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+Exception in thread "main" org.hibernate.LazyInitializationException: could not initialize proxy - no Session
+	at org.hibernate.proxy.AbstractLazyInitializer.initialize(AbstractLazyInitializer.java:148)
+	at org.hibernate.proxy.AbstractLazyInitializer.getImplementation(AbstractLazyInitializer.java:266)
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.invoke(JavassistLazyInitializer.java:68)
+	at com.vladimir.crud.blog.model.Region_$$_jvst21b_1.toString(Region_$$_jvst21b_1.java)
+	at java.base/java.lang.String.valueOf(String.java:3388)
+	at java.base/java.io.PrintStream.println(PrintStream.java:1047)
+	at com.vladimir.crud.blog.view.RegionView.read(RegionView.java:48)
+	at com.vladimir.crud.blog.view.commands.ReadCommand.execute(ReadCommand.java:21)
+	at com.vladimir.crud.blog.view.MainMenu.executeCommand(MainMenu.java:48)
+	at com.vladimir.crud.blog.view.MainMenu.run(MainMenu.java:34)
+	at com.vladimir.crud.blog.Main.main(Main.java:7)
