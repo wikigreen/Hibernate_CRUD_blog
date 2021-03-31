@@ -1,5 +1,8 @@
 language: java
 
+jdk:
+  - openjdk14
+
 sudo: false
 
 notifications:
