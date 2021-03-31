@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/wikigreen/Hibernate_CRUD_blog.svg?branch=master)](https://travis-ci.org/azu/travis-badge)
+[![Build Status](https://travis-ci.com/wikigreen/Hibernate_CRUD_blog.svg?branch=master)](https://travis-ci.com/wikigreen/Hibernate_CRUD_blog)
 
 # CRUD_blog
 Studying console CRUD application
