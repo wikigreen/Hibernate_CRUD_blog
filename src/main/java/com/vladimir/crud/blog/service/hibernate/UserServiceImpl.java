@@ -1,6 +1,5 @@
 package com.vladimir.crud.blog.service.hibernate;
 
-import com.vladimir.crud.blog.model.Post;
 import com.vladimir.crud.blog.model.Region;
 import com.vladimir.crud.blog.model.User;
 import com.vladimir.crud.blog.service.UserService;
@@ -31,17 +30,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) throws ServiceException {
-        Session session = hibernateConnection.getSession();
-        Transaction transaction = session.beginTransaction();
-
-        try {
+        try (Session session = hibernateConnection.getSession()) {
+            Transaction transaction = session.beginTransaction();
             session.update(user);
             transaction.commit();
         } catch (StaleStateException e) {
             throw new ServiceException("There is no user with id " + user.getId());
         }
-
-        session.close();
 
         return user;
     }
@@ -60,7 +55,11 @@ public class UserServiceImpl implements UserService {
         }
 
         user.setPosts(new ArrayList<>(user.getPosts()));
-        user.setRegion(new Region(user.getRegion().getId(), user.getRegion().getName()));
+        if (user.getRegion() == null){
+            user.setRegion(null);
+        } else {
+            user.setRegion(new Region(user.getRegion().getId(), user.getRegion().getName()));
+        }
 
         transaction.commit();
         session.close();
@@ -97,7 +96,11 @@ public class UserServiceImpl implements UserService {
 
         list.forEach(user -> {
             user.setPosts(new ArrayList<>(user.getPosts()));
-            user.setRegion(new Region(user.getRegion().getId(), user.getRegion().getName()));
+            if (user.getRegion() == null){
+                user.setRegion(null);
+            } else {
+                user.setRegion(new Region(user.getRegion().getId(), user.getRegion().getName()));
+            }
         });
 
         transaction.commit();

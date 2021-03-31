@@ -2,11 +2,7 @@ package com.vladimir.crud.blog.service.hibernate;
 
 import com.vladimir.crud.blog.model.Region;
 import com.vladimir.crud.blog.service.RegionService;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.StaleStateException;
-import org.hibernate.Transaction;
-
+import org.hibernate.*;
 import java.util.List;
 
 public class RegionServiceImpl implements RegionService {
@@ -25,24 +21,18 @@ public class RegionServiceImpl implements RegionService {
         transaction.commit();
         session.close();
         region.setId(id);
-
         return region;
     }
 
     @Override
     public Region update(Region region) throws ServiceException {
-        Session session = hibernateConnection.getSession();
-        Transaction transaction = session.beginTransaction();
-
-        try {
+        try (Session session = hibernateConnection.getSession();) {
+            Transaction transaction = session.beginTransaction();
             session.update(region);
             transaction.commit();
-        } catch (StaleStateException e){
+        } catch (StaleStateException e) {
             throw new ServiceException("There is no region with id " + region.getId());
         }
-
-        session.close();
-
         return region;
     }
 
@@ -66,6 +56,10 @@ public class RegionServiceImpl implements RegionService {
         Session session = hibernateConnection.getSession();
         Transaction transaction = session.beginTransaction();
 
+        Query query = session.createQuery("UPDATE User user SET user.region = null WHERE user.region.id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+
         Region region = new Region();
         region.setId(id);
 
@@ -86,11 +80,11 @@ public class RegionServiceImpl implements RegionService {
         Transaction transaction = session.beginTransaction();
 
         Query query = session.createQuery("FROM Region");
-        List list = query.list();
+        List<Region> list = query.list();
 
         transaction.commit();
         session.close();
 
-        return (List<Region>) list;
+        return list;
     }
 }
