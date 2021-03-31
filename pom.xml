@@ -68,8 +68,11 @@
         </profile>
     </profiles>
 
-    <build>
+    <properties>
+        <maven.compiler.release>14</maven.compiler.release>
+    </properties>
 
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -88,11 +91,11 @@
         </plugins>
 
         <resources>
-        <resource>
-            <filtering>true</filtering>
-            <directory>src/main/resources</directory>
-        </resource>
-    </resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
 
     </build>
 
